@@ -19,7 +19,7 @@ describe("Sum function testing", ()=>{
 
 });
 
-describe("Multiple Function testing", ()=>{
+describe("Multiply Function testing", ()=>{
 
 it("Zero input testing", ()=>{
 const finalAnswer = multiply(0, 5);
