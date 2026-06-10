@@ -4,7 +4,7 @@ import {app} from './index'
 
 describe("/add post", ()=>{
 
-it("Positives input testing", async ()=>{
+it("Valid Input testing", async ()=>{
 
 const res = await request(app).post("/add").send({
     a: 2, 
@@ -13,25 +13,22 @@ const res = await request(app).post("/add").send({
 
 const finalAnswer= res.body.sum;
 
+expect(res.status).toBe(200)
 expect(finalAnswer).toBe(9)
 
 
 })
 
-it("Negative input testing", async ()=>{
+it("Invalid input testing", async ()=>{
 
-const res= await request(app).post("/add").send({
-    a: -19,
-    b: -17
-})
+const res= await request(app).post("/add").send([1,9])
 
-const finalAnswer = res.body.sum;
+const finalAnswer = res.body.message;
 
-expect(finalAnswer).toBe(-36);
+expect(res.status).toBe(411);
+expect(finalAnswer).toBe("Invalid input format");
 
 
 })
-
-
 
 })
